@@ -1,1 +1,1 @@
-A collection of a few programs I've wrote in various languages. Nothing really in particular mostly just a bunch of scraps I have to look at for notes.
+Collection of code scraps I've written mainly for learning purposes. Keeping them on github so I can come back to them.
