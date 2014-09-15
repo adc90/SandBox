@@ -3,6 +3,3 @@ let loop x =
                 print_string "Hi\n"
         done
 ;;
-
-loop 100;;
-
