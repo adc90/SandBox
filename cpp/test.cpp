@@ -12,7 +12,7 @@ int main()
 {
 	cout << "Hello World!" << endl;
 	Hi test;
-	cout << test.A << endl;
+	cou t << test.A << endl;
 	cout << test.b << endl;
 	int e = 1;
 	int *a = &e;

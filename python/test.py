@@ -8,5 +8,7 @@ print sum
 sum = 0
 sum = ((end + 1) * end) / 2
 
-
 print sum
+for y in range(0,10):
+    print y
+
