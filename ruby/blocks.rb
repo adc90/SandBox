@@ -32,7 +32,7 @@ def test(&block)
 	#{block.parameters}
 end
 
-test{puts "Hi"}
+test{puts "Block on line 35"}
 
 test
 
