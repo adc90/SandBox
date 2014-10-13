@@ -4,6 +4,3 @@ let loop x =
                 print_string "Hello \n"
         done
 ;;
-
-loop 100;;
-
