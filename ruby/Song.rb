@@ -5,7 +5,7 @@ class Song
         @artist = artist
         @duration = duration
     end
-    
+
     #Getter methods
     attr_reader :name, :artist, :duration
     attr_writer :name, :artist, :duration
@@ -14,7 +14,7 @@ class Song
     # def name
     #     @name
     # end
-    
+
     #Can be written in shorthand by attr_writer
     # def name=(new_name)
     #     @name = new_name
