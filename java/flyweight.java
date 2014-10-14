@@ -1,6 +1,11 @@
 import java.lang.util.Random;
 import java.util.HashMap;
 
+/* */
+ 
+//----------------------------------------------------
+//
+//----------------------------------------------------
 public class flyweight{
     private static final String colors[] = { "Red", "Green", "Blue", "White", "Black"};
 

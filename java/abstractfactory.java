@@ -29,21 +29,21 @@ public class abstractfactory{
 }
 
 //----------------------------------------------------
-// 
+// Interface for Shape
 //----------------------------------------------------
 interface Shape{
     void draw();
 }
 
 //----------------------------------------------------
-// 
+// Interface for Color
 //----------------------------------------------------
 interface Color{
     void fill();
 }
 
 //----------------------------------------------------
-// 
+// Concrete implmentation of Shape
 //----------------------------------------------------
 class Rectangle implements Shape{
     @Override
@@ -53,7 +53,7 @@ class Rectangle implements Shape{
 }
 
 //----------------------------------------------------
-// 
+// Concrete implmentation of Shape
 //----------------------------------------------------
 class Square implements Shape{
     @Override
@@ -63,7 +63,7 @@ class Square implements Shape{
 }
 
 //----------------------------------------------------
-// 
+// Concrete implmentation of Shape
 //----------------------------------------------------
 class Circle implements Shape{
     @Override
@@ -73,7 +73,7 @@ class Circle implements Shape{
 }
 
 //----------------------------------------------------
-// 
+// Concrete implmentation of Color
 //----------------------------------------------------
 class Red implements Color{
     @Override 
@@ -83,7 +83,7 @@ class Red implements Color{
 }
 
 //----------------------------------------------------
-// 
+// Concrete implmentation of Color
 //----------------------------------------------------
 class Green implements Color{
     @Override 
@@ -93,7 +93,7 @@ class Green implements Color{
 }
 
 //----------------------------------------------------
-// 
+// Concrete implmentation of Color
 //----------------------------------------------------
 class Blue implements Color{
     @Override 
@@ -103,7 +103,8 @@ class Blue implements Color{
 }
 
 //----------------------------------------------------
-// 
+// Abstract class setting the blue print for creating 
+// further factories
 //----------------------------------------------------
 abstract class AbstractFactory{
     abstract Color getColor(String color);
@@ -111,7 +112,7 @@ abstract class AbstractFactory{
 }
 
 //----------------------------------------------------
-// 
+// Implementation of the AbstractFactory
 //----------------------------------------------------
 class ShapeFactory extends AbstractFactory{
     
@@ -137,7 +138,7 @@ class ShapeFactory extends AbstractFactory{
 }
 
 //----------------------------------------------------
-// 
+// Implementation of the Abstract Factory
 //----------------------------------------------------
 class ColorFactory extends AbstractFactory{
     
@@ -163,7 +164,7 @@ class ColorFactory extends AbstractFactory{
 }
 
 //----------------------------------------------------
-// 
+// A factory method for producing factories
 //----------------------------------------------------
 class FactoryProducer{
     public static AbstractFactory getFactory(String choice){

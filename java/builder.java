@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //----------------------------------------------------
-// 
+// Main class
 //----------------------------------------------------
 public class builder{
     public static void main(String[] args) {
@@ -21,7 +21,7 @@ public class builder{
 }
 
 //----------------------------------------------------
-// 
+// Item interface 
 //----------------------------------------------------
 interface Item{
     public String name();
@@ -30,14 +30,14 @@ interface Item{
 }
 
 //----------------------------------------------------
-// 
+// Packing interface
 //----------------------------------------------------
 interface Packing{
     public String pack();
 }
 
 //----------------------------------------------------
-// 
+// Concrete implementation of Packing
 //----------------------------------------------------
 class Wrapper implements Packing{
     @Override
@@ -46,6 +46,9 @@ class Wrapper implements Packing{
     }
 }
 
+//----------------------------------------------------
+// Concrete implementation of Packing
+//----------------------------------------------------
 class Bottle implements Packing{
     @Override 
     public String pack(){
@@ -54,7 +57,8 @@ class Bottle implements Packing{
 }
 
 //----------------------------------------------------
-//
+// Abstract class detailing a basic blue print for a 
+// burger and implementing the Item interface
 //----------------------------------------------------
 abstract class Burger implements Item{
 
@@ -67,6 +71,10 @@ abstract class Burger implements Item{
     public abstract float price();
 }
 
+//----------------------------------------------------
+// Abstract class detailing a basic blue print for a 
+// cold drink and implementing the Item interface
+//----------------------------------------------------
 abstract class ColdDrink implements Item{
     
     @Override 
@@ -79,7 +87,8 @@ abstract class ColdDrink implements Item{
 }
 
 //----------------------------------------------------
-// 
+// A concrete implemenation of the Burger abstract 
+// class.
 //----------------------------------------------------
 class VegBurger extends Burger{
     
@@ -95,7 +104,8 @@ class VegBurger extends Burger{
 }
 
 //----------------------------------------------------
-// 
+// A concrete implemenation of the Burger abstract 
+// class.
 //----------------------------------------------------
 class ChickenBurger extends Burger{
     
@@ -111,7 +121,8 @@ class ChickenBurger extends Burger{
 }
 
 //----------------------------------------------------
-// 
+// A concrete implemenation of the ColdDrink abstract
+// class
 //----------------------------------------------------
 class Coke extends ColdDrink{
 
@@ -127,7 +138,8 @@ class Coke extends ColdDrink{
 }
 
 //----------------------------------------------------
-// 
+// A concrete implemenation of the ColdDrink abstract
+// class
 //----------------------------------------------------
 class Pepsi extends ColdDrink{
 
@@ -143,7 +155,8 @@ class Pepsi extends ColdDrink{
 }
 
 //----------------------------------------------------
-// 
+// Class that gets the is responsible for getting the 
+// cost of a meal and displaying that information.
 //----------------------------------------------------
 class Meal{
     private List<Item> items = new ArrayList<Item>();
@@ -170,7 +183,9 @@ class Meal{
 }
 
 //----------------------------------------------------
-// 
+// Class that creates a new meal by adding the 
+// differnt elements to the Meal such as a VegBurger
+// and a Coke and returning it as a Meal object.
 //----------------------------------------------------
 class MealBuilder{
     

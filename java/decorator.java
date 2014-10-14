@@ -1,3 +1,12 @@
+/* The Decorator pattern allows you to add behavior to a 
+ * class by decorating the each successive object with 
+ * addtional behavior. In this example RedShapeDecorator
+ * is passed a Circle object which has it's behavior held
+ * inside the Decorator super class. The RedShapeDecorator then
+ * redefines the draw() method calling it's additonal behavior 
+ * as well as calling the previous behavior stored in the Decorator
+ * base class.   */
+
 //----------------------------------------------------
 // Main class
 //----------------------------------------------------
@@ -26,27 +35,28 @@ interface Shape{
 }
 
 //----------------------------------------------------
-//
+// Concrete impmenetation of the Shape interface
 //----------------------------------------------------
 class Rectangle implements Shape{
-    @Override
-    public void draw(){
+    @Override public void draw(){
         System.out.println("Shape: Rectangle");
     }
 }
 
 //----------------------------------------------------
-//
+// Concrete impmenetation of the Shape interface
 //----------------------------------------------------
 class Circle implements Shape{
-    @Override
-    public void draw(){
+    @Override public void draw(){
         System.out.println("Shape: Circle");
     }
 }
 
 //----------------------------------------------------
-//
+// Abstract class that implements the Shape interface.
+// The point of this class is to allow you to add in
+// additional behavior further down the line without
+// affecting the behavior of the original class.
 //----------------------------------------------------
 abstract class ShapeDecorator implements Shape{
 
@@ -62,7 +72,8 @@ abstract class ShapeDecorator implements Shape{
 }
 
 //----------------------------------------------------
-//
+// In the class decoratedShape is passed to the 
+// ShapeDecorator super class.
 //----------------------------------------------------
 class RedShapeDecorator extends ShapeDecorator{
 
@@ -70,8 +81,7 @@ class RedShapeDecorator extends ShapeDecorator{
         super(decoratedShape);
     }
 
-    @Override
-    public void draw(){
+    @Override public void draw(){
         decoratedShape.draw();
         setRedBorder(decoratedShape);
     }

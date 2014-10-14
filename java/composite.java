@@ -1,6 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/* This pattern has a recursive list of Employee objects. What is meant by this
+ * is that for example a Head Marketing Employee object may have a list of other
+ * employee objects that are his subordinates.  */
+
+//----------------------------------------------------
+// Main class
+//----------------------------------------------------
 public class composite{
     public static void main(String[] args) {
         Employee CEO = new Employee("John","CEO",30000); 
@@ -21,8 +28,8 @@ public class composite{
         headSales.add(salesExecutive1);
         headSales.add(salesExecutive2);
 
-        headMarketing.add(clerk1);
-        headMarketing.add(clerk2);
+        headMarketing.add(clerk1); /* Clerks one and two are added as subordinates to  */
+        headMarketing.add(clerk2); /* head of marketing. In this way they can be respresented as a tree structure. */
 
         System.out.println(CEO);
         for (Employee headEmployee : CEO.getSubordinates()) {
@@ -34,6 +41,10 @@ public class composite{
     }
 }
 
+//----------------------------------------------------
+// Employee class that keeps track of subordianates
+// salary and the department the employee works in
+//----------------------------------------------------
 class Employee{
     private String name;
     private String dept;
@@ -63,3 +74,4 @@ class Employee{
         return ("Employee :[Name: " + name + ",dept: " + dept + ",salary :" + salary + "]");
     }
 }
+

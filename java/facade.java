@@ -1,3 +1,11 @@
+/* This pattern creates a facade in order to hide the logic of object creation.
+ * In this example Rectangle,Circle, and Square are created in the ShapeMaker
+ * class. From there you can simply call the differnt methods to draw the differnt
+ * shapes.  */
+
+//----------------------------------------------------
+// Main class
+//----------------------------------------------------
 public class facade{
     public static void main(String[] args) {
         ShapeMaker shapeMaker = new ShapeMaker();
@@ -7,31 +15,43 @@ public class facade{
     }
 }
 
+//----------------------------------------------------
+// Shape interface
+//----------------------------------------------------
 interface Shape{
     void draw();
 }
 
+//----------------------------------------------------
+// Concrete implemenation of the Shape interface
+//----------------------------------------------------
 class Rectangle implements Shape{
-    @Override
-    public void draw(){
+    @Override public void draw(){
         System.out.println("Rectangle::draw()");
     }    
 }
 
-class Square  implements Shape{
-    @Override
-    public void draw(){
+//----------------------------------------------------
+// Concrete implemenation of the Shape interface
+//---------------------------------------------------
+class Square implements Shape{
+    @Override public void draw(){
         System.out.println(" Square::draw()"); 
     }    
 }
 
+//----------------------------------------------------
+// Concrete implemenation of the Shape interface
+//----------------------------------------------------
 class Circle implements Shape{
-    @Override
-    public void draw(){
+    @Override public void draw(){
         System.out.println("Circle::draw()");
     }    
 }
 
+//----------------------------------------------------
+//
+//----------------------------------------------------
 class ShapeMaker{
     private Shape circle;
     private Shape rectangle;
@@ -55,3 +75,4 @@ class ShapeMaker{
         square.draw(); 
     }
 }
+

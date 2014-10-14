@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //----------------------------------------------------
-// 
+// Main class
 //----------------------------------------------------
 public class filter {
     public static void main(String[] args) {
@@ -22,16 +22,16 @@ public class filter {
         Criteria singleOrFemale = new OrCriteria(single, female);
 
         System.out.println("Males: ");
-        printPersons(male.meetCriteria(persons));
+        printPersons(male.meetCriteria(persons)); /* Robert, John, Mike, Bobby */
 
         System.out.println("\nFemales: ");
-        printPersons(female.meetCriteria(persons));
+        printPersons(female.meetCriteria(persons)); /* Diana, Laura */
 
         System.out.println("\nSingle Males: ");
-        printPersons(singleMale.meetCriteria(persons));
+        printPersons(singleMale.meetCriteria(persons)); /* Robert, Mike, Bobby */
 
         System.out.println("\nSingle Or Females: ");
-        printPersons(singleOrFemale.meetCriteria(persons));
+        printPersons(singleOrFemale.meetCriteria(persons)); /* Diana */
     }
 
     public static void printPersons(List<Person> persons){
@@ -45,7 +45,7 @@ public class filter {
 }
 
 //----------------------------------------------------
-// 
+// POD class that holds marital stataus, name and sex
 //----------------------------------------------------
 class Person {
 
@@ -71,19 +71,18 @@ class Person {
 }
 
 //----------------------------------------------------
-// 
+// Interface for Criteria
 //----------------------------------------------------
 interface Criteria {
     public List<Person> meetCriteria(List<Person> persons);
 }
 
 //----------------------------------------------------
-// 
+// A filter that only returns Male persons
 //----------------------------------------------------
 class CriteriaMale implements Criteria {
 
-    @Override
-    public List<Person> meetCriteria(List<Person> persons) {
+    @Override public List<Person> meetCriteria(List<Person> persons) {
         List<Person> malePersons = new ArrayList<Person>();
         for (Person person : persons) {
             if(person.getGender().equalsIgnoreCase("MALE")){
@@ -95,12 +94,11 @@ class CriteriaMale implements Criteria {
 }
 
 //----------------------------------------------------
-// 
+// A filter that only returns Female persons
 //----------------------------------------------------
 class CriteriaFemale implements Criteria {
 
-    @Override
-    public List<Person> meetCriteria(List<Person> persons) {
+    @Override public List<Person> meetCriteria(List<Person> persons) {
         List<Person> femalePersons = new ArrayList<Person>();
         for (Person person : persons) {
             if(person.getGender().equalsIgnoreCase("FEMALE")){
@@ -112,12 +110,11 @@ class CriteriaFemale implements Criteria {
 }
 
 //----------------------------------------------------
-// 
+// A filter that only returns Single persons
 //----------------------------------------------------
 class CriteriaSingle implements Criteria {
 
-    @Override
-    public List<Person> meetCriteria(List<Person> persons) {
+    @Override public List<Person> meetCriteria(List<Person> persons) {
         List<Person> singlePersons = new ArrayList<Person>();
         for (Person person : persons) {
             if(person.getMaritalStatus().equalsIgnoreCase("SINGLE")){
@@ -129,7 +126,10 @@ class CriteriaSingle implements Criteria {
 }
 
 //----------------------------------------------------
-// 
+// Class that takes two sets of criteria and returns 
+// only instances where both sets of criteria are true
+// 1 & 1 = 1
+// 0 & 1 = 0
 //----------------------------------------------------
 class AndCriteria implements Criteria {
 
@@ -141,15 +141,18 @@ class AndCriteria implements Criteria {
         this.otherCriteria = otherCriteria;
     }
 
-    @Override
-    public List<Person> meetCriteria(List<Person> persons) {
-        List<Person> firstCriteriaPersons = criteria.meetCriteria(persons);
-        return otherCriteria.meetCriteria(firstCriteriaPersons);
+    @Override public List<Person> meetCriteria(List<Person> persons) {
+        List<Person> firstCriteriaPersons = criteria.meetCriteria(persons); /* This matcthes all persons meeting the first criteria */
+        return otherCriteria.meetCriteria(firstCriteriaPersons);            /* as well as everyone meeting the second criteria    */
     }
 }
 
 //----------------------------------------------------
-// 
+// Class that takes two sets of criteria and returns 
+// only instances where one of the sets of criteria are
+// true
+// 1 || 0 = 1
+// 1 &  1 = 1
 //----------------------------------------------------
 class OrCriteria implements Criteria {
 
@@ -161,8 +164,7 @@ class OrCriteria implements Criteria {
         this.otherCriteria = otherCriteria;
     }
 
-    @Override
-    public List<Person> meetCriteria(List<Person> persons) {
+    @Override public List<Person> meetCriteria(List<Person> persons) {
         List<Person> firstCriteriaItems = criteria.meetCriteria(persons);
         List<Person> otherCriteriaItems = otherCriteria.meetCriteria(persons);
 
