@@ -1,16 +1,20 @@
 import java.lang.util.Random;
 import java.util.HashMap;
 
-/* */
+/* This pattern allows for pooling of resources. For example
+ * during the program 20 random colors are called, if a color 
+ * is called that is already selected it is retrieved from the hash
+ * map allowing for the reuse of that object. This pattern only makes
+ * sense in certain context where unique objects aren't needed however */
  
 //----------------------------------------------------
-//
+// Main class
 //----------------------------------------------------
 public class flyweight{
     private static final String colors[] = { "Red", "Green", "Blue", "White", "Black"};
 
     public static void main(String[] args) {
-        for (int i = 0; i < 20; ++i) {
+        for (int i = 0; i < 20; ++i) { 
             Circle circle = (Circle) ShapeFactory.getCircle(getRandomColor());
             circle.setX(getRandomX());
             circle.setY(getRandomY());
@@ -33,14 +37,14 @@ public class flyweight{
 }
 
 //----------------------------------------------------
-//
+// Interface for Shape
 //----------------------------------------------------
 interface Shape{
     void draw();
 }
 
 //----------------------------------------------------
-//
+// Concrete implementation of the Shape interface
 //----------------------------------------------------
 class Circle implements Shape{
 
@@ -65,8 +69,7 @@ class Circle implements Shape{
         this.radius = radius;
     }
 
-    @Override
-    public void draw(){
+    @Override public void draw(){
         System.out.println("Circle: Draw() [Color: "
                              + color +", x: " + x
                              +", y:" +", radius: "
@@ -90,3 +93,4 @@ class ShapeFactory{
         return circle;
     }
 }
+

@@ -1,10 +1,14 @@
-//=======================================================
-// Command Pattern in Java
-//=======================================================
+/* Command pattern is used to abstract various functionality into a common 
+ * interface that can be called. In this example buy and sell stocks are placed 
+ * into two concrete Order instatations where they can be executed all at once by a 
+ * Broker object at a later time. */
 
 import java.util.ArrayList;
 import java.util.List;
 
+//----------------------------------------------------
+// Main class
+//----------------------------------------------------
 public class command{
 
     public static void main(String[] args) {
@@ -18,14 +22,18 @@ public class command{
     }
 }
 
+//----------------------------------------------------
+// Defines an interface for the Order hiarchy. 
+//----------------------------------------------------
 interface Order {
     void execute();
 }
 
-//------------------------------------
-// The stock class holds the methods 
-// needed to manager the stock itself
-//------------------------------------
+//----------------------------------------------------
+// Stock class which holds a name and quality. 
+// Implements the obvious buy and sell functionality 
+// as well.
+//----------------------------------------------------
 class Stock {
     private String name = "ABC";
     private int quantity = 10;
@@ -38,10 +46,12 @@ class Stock {
         System.out.println("Stock [ Name: " + name + ", Quantity: " + quantity + " ] sold");
     }
 }
-//---------------------------------
-// This class abstracs the execute
-// method from the stock
-//---------------------------------
+
+//----------------------------------------------------
+// The buy stock class uses the stocks buy functionality
+// in a way that can be utilized by calling execute()
+// from the Order interface
+//----------------------------------------------------
 class BuyStock implements Order{
     private Stock abcStock;
 
@@ -54,6 +64,10 @@ class BuyStock implements Order{
     }
 }
 
+//----------------------------------------------------
+// The functionality here is the same as the BuyStock
+// class except in reverese (sell stock)
+//----------------------------------------------------
 class SellStock implements Order{
     private Stock abcStock;
 
@@ -61,15 +75,17 @@ class SellStock implements Order{
         this.abcStock = abcStock; 
     }
 
-    public void execute(){
+    public void execute(){ //Sell is mapped to the execute function of the Order interface
         abcStock.sell(); 
     }
 }
-
-//---------------------------------------
-// The Brocker executes differnt commands
-// based on what is passed to it.
-//---------------------------------------
+ 
+//----------------------------------------------------
+// The Broker class mainly just iterates through a list
+// or orders and executes them. The cleveness from this
+// pattern comes from the fact that the abstraction allows the 
+// Broker class to simply iterate and call order.execute()
+//----------------------------------------------------
 class Broker{
     private List<Order> orderList = new ArrayList<Order>();
 

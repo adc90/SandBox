@@ -1,3 +1,9 @@
+/* The Null Object Patter is usefull for instances where you want to
+ * define behavior for what happens when you have a NullInstance. In 
+ * this example if a name is not found in the database then a NullInstance
+ * object is returned which holds behavior for when you run into a null 
+ * value. */
+
 //----------------------------------------------------
 // Main class
 //----------------------------------------------------
@@ -18,7 +24,9 @@ public class nullobject{
 }
 
 //----------------------------------------------------
-// 
+// Represents the AbstractCustomer. Defines a way to  
+// get the name of the customer. As well as a method 
+// for checking if the customer is non-existent.
 //----------------------------------------------------
 abstract class AbstractCustomer{
     protected String name;
@@ -27,7 +35,7 @@ abstract class AbstractCustomer{
 }
 
 //----------------------------------------------------
-// 
+// Represents an instance of real customer.
 //----------------------------------------------------
 class RealCustomer extends AbstractCustomer{
     
@@ -35,35 +43,33 @@ class RealCustomer extends AbstractCustomer{
         this.name = name;
     }
 
-    @Override
-    public String getName(){
+    @Override public String getName(){
         return name;
     }
 
-    @Override
-    public boolean isNil(){
+    @Override public boolean isNil(){
         return false;
     }
 }
 
 //----------------------------------------------------
-// 
+// Represents behavior for an instance of null customer.
 //----------------------------------------------------
 class NullCustomer extends AbstractCustomer{
 
-    @Override
-    public String getName(){
+    @Override public String getName(){
         return "Not Availiable in Customer Database";
     }
 
-    @Override
-    public boolean isNil(){
+    @Override public boolean isNil(){
         return true;
     }
 }
 
 //----------------------------------------------------
-// 
+// Checks the customer database (represented as names[])
+// and if name exisit then an instance of real customer
+// is returned else a NullCustomer is returned.
 //----------------------------------------------------
 class CustomerFactory{
     public static final String[] names = {"Rob" ,"Joe", "Julie"};
@@ -77,6 +83,4 @@ class CustomerFactory{
         return new NullCustomer();
     }
 }
-
-
 

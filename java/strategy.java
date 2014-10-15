@@ -1,5 +1,12 @@
+/* The strategy pattern is useful in situations where we would like to
+ * change the behavior of an object based on the context. In this example 
+ * we have behavior defined using the Strategy interface which is implmenented
+ * in Add, Subtract, and Multiplication. This behavior can be changed and 
+ * added to the context which calls the same executeStrategy() method
+ * regardless. */
+
 //----------------------------------------------------
-// 
+// Main class
 //----------------------------------------------------
 public class strategy{
     public static void main(String[] args) {
@@ -15,42 +22,43 @@ public class strategy{
 }
 
 //----------------------------------------------------
-//
+// Interface for Strategy
 //----------------------------------------------------
 interface Strategy{
     public int doOperation(int num1, int num2);
 }
 
 //----------------------------------------------------
-//
+// Add operatation that implements Strategy
 //----------------------------------------------------
 class OperationAdd implements Strategy{
-    @Override
-    public int doOperation(int num1, int num2){
+    @Override public int doOperation(int num1, int num2){
         return num1 + num2;
     }
 }
 
 //----------------------------------------------------
-//
+// Substract operation that implements Strategy
 //----------------------------------------------------
 class OperationSubtract implements Strategy{
-    @Override
-    public int doOperation(int num1, int num2){
+    @Override public int doOperation(int num1, int num2){
         return num1 - num2;
     }
 }
 
 //----------------------------------------------------
-//
+// Multiplication operation that implements Stategy
 //----------------------------------------------------
 class OperationMultiply implements Strategy{
-    @Override
-    public int doOperation(int num1, int num2){
+    @Override public int doOperation(int num1, int num2){
         return num1 * num2;
     }
 }
 
+//----------------------------------------------------
+// Class that holds the current Strategy which can be 
+// changed based on the situation.
+//----------------------------------------------------
 class Context{
     private Strategy strategy;
 

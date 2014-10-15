@@ -1,5 +1,11 @@
+/* This pattern allows you to create multiple levels of responsiblity 
+ * for your class structure. In this instance a Logger can be set to have
+ * another instance of a Logger in it's hiacrchy. In this manner it is possible
+ * to create a situation where you log something with the ErrorLogger (to the console)
+ * as well as outputing something to the FileLogger (to a text file)  */
+
 //----------------------------------------------------
-// 
+// Main class
 //----------------------------------------------------
 public class cor{
     public static void main(String[] args) {
@@ -7,7 +13,7 @@ public class cor{
 
         loggerChain.logMessage(AbstractLogger.INFO, "This is an information.            " );
         loggerChain.logMessage(AbstractLogger.DEBUG,"This is an debug level information." );
-        loggerChain.logMessage(AbstractLogger.INFO, "This is an error information.      " );
+        loggerChain.logMessage(AbstractLogger.ERROR, "This is an error information.      " );
     }
 
     private static AbstractLogger getChainOfLoggers(){
@@ -23,7 +29,9 @@ public class cor{
 }
 
 //----------------------------------------------------
-// 
+// Abstract class for the Logger class. Manages the 
+// level higharchy of the differnt loggers as well as 
+// setting the level for the next Logger in the hiarchy
 //----------------------------------------------------
 abstract class AbstractLogger{
     public static int INFO  = 1;
@@ -39,10 +47,10 @@ abstract class AbstractLogger{
     }
 
     public void logMessage(int level, String message){
-        if(this.level <= level){
+        if(this.level <= level){ //If this level is under another level write the log
             write(message);
         }
-        if(nextLogger != null){
+        if(nextLogger != null){ // If there is another level of logging then call the log message on that 
             nextLogger.logMessage(level,message);
         }
     }
@@ -51,37 +59,35 @@ abstract class AbstractLogger{
 }
 
 //----------------------------------------------------
-// 
+// Concrete implementation of AbrstractLogger
 //----------------------------------------------------
 class ConsoleLogger extends AbstractLogger{
 
-    public ConsoleLogger(int level){
+    public ConsoleLogger(int level){ // INFO = 1
         this.level = level;
     }
 
-    @Override
-    protected void write(String message){
+    @Override protected void write(String message){
         System.out.println("Standard Console::Logger: " + message);
     }
 }
 
 //----------------------------------------------------
-// 
+// Concrete implementation of AbrstractLogger
 //----------------------------------------------------
 class ErrorLogger extends AbstractLogger{
 
-    public ErrorLogger(int level){
+    public ErrorLogger(int level){ // ERROR = 3
         this.level = level;
     }
 
-    @Override
-    protected void write(String message){
+    @Override protected void write(String message){
         System.out.println("Error::Logger: " + message);
     }
 }
 
 //----------------------------------------------------
-// 
+// Concrete implementation of AbrstractLogger
 //----------------------------------------------------
 class FileLogger extends AbstractLogger{
 
@@ -89,8 +95,7 @@ class FileLogger extends AbstractLogger{
         this.level = level;
     }
 
-    @Override
-    protected void write(String message){
+    @Override protected void write(String message){
         System.out.println("File::Logger: " + message);
     }
 }

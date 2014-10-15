@@ -1,4 +1,10 @@
+/* The state pattern changes behavior based on its state.
+ * In this example the context saves the current state that 
+ * defines the behavior. */
 
+//----------------------------------------------------
+// Main class
+//----------------------------------------------------
 public class state{
     public static void main(String[] args) {
         Context context = new Context();
@@ -13,11 +19,16 @@ public class state{
     }
 }
 
-
+//----------------------------------------------------
+// Interface for State
+//----------------------------------------------------
 interface State{
     public void doAction(Context context);
 }
 
+//----------------------------------------------------
+//
+//----------------------------------------------------
 class StartState implements State{
     public void doAction(Context context){
         System.out.println("Player is in a start state");
@@ -40,7 +51,10 @@ class StopState implements State{
     }
 }
 
-class Context
+//----------------------------------------------------
+// Saves the current state.
+//----------------------------------------------------
+class Context{
     private State state;
 
     public Context(){
@@ -55,3 +69,4 @@ class Context
         return this.state;
     }
 }
+

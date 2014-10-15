@@ -1,3 +1,16 @@
+/* The Observer pattern can be summed up in two patterns:
+ * 1) Subject: Holds both a State and a list of Observers that
+ *    would like to be moddified to changes in that state.
+ * 2) Observers: A class that peforms some operation on the information held
+ *    by the Subject and will perform this operation when notified to any changes
+ *    in the Subject
+ *
+ *    Note: This can be thought of as a subscription model. You subscribe to a 
+ *    news letter and they update you on any changes. The Subject class could in
+ *    some cases be made a Singleton, though the benifit is not known.
+ *
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +33,10 @@ public class observer{
 }
 
 //----------------------------------------------------
-// 
+// The subject class is responsible for a maintaining
+// a state (in this case an `int`) as well as a list 
+// of Observer classes which is holds and notifies 
+// of any changes to it's state.
 //----------------------------------------------------
 class Subject{
     private List<Observer> observers = new ArrayList<Observer>();
@@ -47,7 +63,10 @@ class Subject{
 }
 
 //----------------------------------------------------
-// 
+// Abstract class for the Observers which defines two
+// necessary components:
+// 1) The subject which the Observer attaches itself.
+// 2) The update method called by the subject.
 //----------------------------------------------------
 abstract class Observer{
     protected Subject subject;
@@ -55,7 +74,7 @@ abstract class Observer{
 }
 
 //----------------------------------------------------
-// 
+// Concrete implmentation of the Observer
 //----------------------------------------------------
 class BinaryObserver extends Observer{
     
@@ -71,7 +90,7 @@ class BinaryObserver extends Observer{
 }
 
 //----------------------------------------------------
-// 
+// Concrete implmentation of the Observer
 //----------------------------------------------------
 class OctalObserver extends Observer{
     
@@ -87,7 +106,7 @@ class OctalObserver extends Observer{
 }
 
 //----------------------------------------------------
-// 
+// Concrete implmentation of the Observer
 //----------------------------------------------------
 class HexaObserver extends Observer{
 
@@ -101,3 +120,4 @@ class HexaObserver extends Observer{
         System.out.println("Hex String: " + Integer.toHexString(subject.getState()).toUpperCase());
     }
 }
+

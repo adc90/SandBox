@@ -1,3 +1,19 @@
+/* The Memento design pattern allows you to save the
+ * state of an object into an immutable object called a memento.
+ * In this example only States 2,3 are saved in the CareTaker
+ * class. Basically the pattern boils down to three seperate classes:
+ *
+ * 1) Memento    : An immutable class that holds a state that is saved
+ *                 by the Originator
+ * 2) Originator : A mutable class that holds a current state and can further
+ *                 save that state as a Memento in order to save that state
+ *                 permanently
+ * 3) Caretaker  : A class that holds all the previous states as Memento objects
+ *
+ * Note: A neat addition to this pattern would be to string together states in 
+ * the chain allowing you to create an undo tree.
+ * */
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +40,8 @@ public class memento{
 }
 
 //----------------------------------------------------
-//
+// Memento class that stores a state, set by it's
+// constructor and is able to retrieve that state later
 //----------------------------------------------------
 class Memento{
     private String state;
@@ -39,7 +56,9 @@ class Memento{
 }
 
 //----------------------------------------------------
-//
+// Acts as a enhanced Memento class esentially. Allows
+// the setting of the current state as well as the saving
+// of the state to an immutable Memento class.
 //----------------------------------------------------
 class Originator{
 
@@ -62,6 +81,10 @@ class Originator{
     }
 }
 
+//----------------------------------------------------
+// The CareTaker class allows you to add a previous
+// state to the list of immutable Memento objects.
+//----------------------------------------------------
 class CareTaker{
     private List<Memento> mementoList = new ArrayList<Memento>();
 
@@ -73,3 +96,4 @@ class CareTaker{
         return mementoList.get(index);
     }
 }
+
