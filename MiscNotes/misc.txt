@@ -1,0 +1,5 @@
+** Just a list of misc notes I keep that I can (should) organize later
+
+*Stream: a sequence of data elements made availiable over time. Can be thought
+of as a conveyor belt that allows items to be processed one at a time rather than
+in large batches.
