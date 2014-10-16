@@ -1,3 +1,15 @@
+/* The MVC (Model View Controller) pattern is used to serperate a program 
+ * into three seperate components:
+ * 1) Model      : The model is used to simply hold the objects information.
+ *                 In this example the class Student just holds the name and 
+ *                 roll number.
+ * 2) View       : The view class is used to display the data in some manner.
+ * 3) Controller : The controller class is used to manipulate the data in the 
+ *                 Student model and update it. This calls the View class which
+ *                 will display the information for the class.
+ * */
+
+
 //----------------------------------------------------
 // Main class
 //----------------------------------------------------

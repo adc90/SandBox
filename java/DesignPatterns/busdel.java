@@ -1,3 +1,15 @@
+/* The Business Delegate Pattern is used to decouple presentation tier 
+ * and business tier. The pattern is broken up into 4 classes
+ * 1) Client            : Presentation tier code.
+ * 2) Business Delegate : A single entry point class for client entities
+ *                        to provide access to Business Service methods.
+ * 3) LookUp Service    : Lookup service object is responsible to get 
+ *                        relative business implementation and provide business
+ *                        object access to the business delegate object.
+ * 4) Business Service  : Concrete class implement this business service 
+ *                        to provide the actual business implementation logic.
+ * */
+
 //----------------------------------------------------
 // Main class
 //----------------------------------------------------
@@ -15,34 +27,32 @@ public class busdel{
 }
 
 //----------------------------------------------------
-//
+// Interface for BusinessService
 //----------------------------------------------------
 interface BusinessService{
     public void doProcessing();
 }
 
 //----------------------------------------------------
-//
+// Concrete implmentatoin of BusinessService
 //----------------------------------------------------
 class EJBService implements BusinessService{
-    @Override
-    public void doProcessing(){
+    @Override public void doProcessing(){
         System.out.println("Processing task by invoking EJB Service");
     }
 }
 
 //----------------------------------------------------
-//
+// Concrete implmentatoin of BusinessService
 //----------------------------------------------------
 class JMSService implements BusinessService{
-    @Override
-    public void doProcessing(){
+    @Override public void doProcessing(){
         System.out.println("Processing task by invoking JMS Service");
     }
 }
 
 //----------------------------------------------------
-//
+// Concrete implmentatoin of BusinessService
 //----------------------------------------------------
 class BusinessLookUp{
     public BusinessService getBusinessService(String serviceType){
@@ -73,7 +83,8 @@ class BusinessDelegate{
 }
 
 //----------------------------------------------------
-//
+// Client which holds a BuisinessDelegate and calls 
+// its task through doTask() 
 //----------------------------------------------------
 class Client{
     BusinessDelegate businessService;

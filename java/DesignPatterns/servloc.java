@@ -17,7 +17,7 @@ public class servloc{
     }
 }
 
-/----------------------------------------------------
+//----------------------------------------------------
 // 
 //----------------------------------------------------
 interface Service{
@@ -36,6 +36,9 @@ class Service1 implements Service{
     }
 }
 
+//----------------------------------------------------
+// 
+//----------------------------------------------------
 class Service2 implements Service{
     public void execute(){
         System.out.println("Executing Service2");

@@ -1,6 +1,21 @@
 import java.util.List;
 import java.util.ArrayList;
 
+/*  The intercepting filter design pattern is used when we want do some pre/post
+ *  processing with request or response of the application. Filters are defined
+ *  and applied on the request before passing the request to the actual target
+ *  application. Filters can do the authentication/authorization/logging
+ *  or tracking of request and then pass the request to corresponding handlers.
+ *  1) Filter         : Filter which will perform certain task prior or after
+ *                      execution of request by request handlers.
+ *  2) Filter Chain   : Carries multiple filters and help to execute them in 
+ *                      defined order on targets.
+ *  3) Target         : Target object is the request handler.
+ *  4) Filter Manager : Filter Manager manages the filters and Filter Chain.
+ *  5) Client         : Client is the object who sends request to the Target
+ *                      object.
+ */
+
 //----------------------------------------------------
 // Main class
 //----------------------------------------------------
@@ -17,14 +32,15 @@ public class interfilter{
 }
 
 //----------------------------------------------------
-// 
+// Filter interface
 //----------------------------------------------------
 interface Filter{
     public void execute(String request);
 }
 
 //----------------------------------------------------
-// 
+// Concrete implementation of the Filter interface
+// Simply exeutes the message.
 //----------------------------------------------------
 class AuthenticationFilter implements Filter{
     public void execute(String request){
@@ -33,7 +49,8 @@ class AuthenticationFilter implements Filter{
 }
 
 //----------------------------------------------------
-// 
+// Concrete implementation of the Filter interface
+// Simply exeutes the message.
 //----------------------------------------------------
 class DebugFilter implements Filter{
     public void execute(String request){
@@ -41,6 +58,9 @@ class DebugFilter implements Filter{
     }
 }
 
+//----------------------------------------------------
+// 
+//----------------------------------------------------
 class Target{
     public void execute(String request){
         System.out.println("Executing request: " + request);
@@ -92,7 +112,8 @@ class FilterManager{
 }
 
 //----------------------------------------------------
-// 
+// Client class, sends a request through the target 
+// class through the filter manager.
 //----------------------------------------------------
 class Client{
     private FilterManager filterManager;
@@ -105,8 +126,4 @@ class Client{
         filterManager.filterRequest(request);
     }
 }
-
-
-
-
 

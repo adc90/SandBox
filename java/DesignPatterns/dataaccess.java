@@ -1,8 +1,21 @@
 import java.util.List;
 import java.util.ArrayList;
 
+/* The Data Access Object Pattern (DAO) is used to separate low level data
+ * accessing API operations from high level business services. The pattern 
+ * is separated into three different objects:
+ * 1) Data Access Object Interface      : Interface defining the standard 
+ *                                        operations to be performed on a models
+ *                                        objects.
+ * 2) Data Access Object concrete class : Implements the DAO interface. Responsible
+ *                                        for getting data from a datasource.
+ * 3) Model Object/Value Object         : Object containing get/set methods to store
+ *                                        data retrieved using DAO class. 
+ */
+
+
 //----------------------------------------------------
-//
+// Main class
 //----------------------------------------------------
 public class dataaccess{
     public static void main(String[] args) {
@@ -22,7 +35,7 @@ public class dataaccess{
 }
 
 //----------------------------------------------------
-//
+// Student Model Value Object
 //----------------------------------------------------
 class Student{
     private String name;
@@ -50,6 +63,9 @@ class Student{
     }
 }
 
+//----------------------------------------------------
+// Data Access Object Interface
+//----------------------------------------------------
 interface StudentDao{
     public List<Student> getAllStudents();
     public Student getStudent(int rollNo);
@@ -57,6 +73,9 @@ interface StudentDao{
     public void deleteStudent(Student student);
 }
 
+//----------------------------------------------------
+// Concrete implementation of the above interface
+//----------------------------------------------------
 class StudentDaoImpl implements StudentDao{
 
     List<Student> students;
@@ -69,24 +88,20 @@ class StudentDaoImpl implements StudentDao{
         students.add(student2);
     }
 
-    @Override
-    public void deleteStudent(Student student){
+    @Override public void deleteStudent(Student student){
         students.remove(student.getRollNo());
         System.out.println("Student: Roll No " + student.getRollNo() + ", deleted from database");
     }
 
-    @Override
-    public List<Student> getAllStudents(){
+    @Override public List<Student> getAllStudents(){
         return students;
     }
 
-    @Override
-    public Student getStudent(int rollNo){
+    @Override public Student getStudent(int rollNo){
         return students.get(rollNo);
     }
 
-    @Override
-    public void updateStudent(Student student){
+    @Override public void updateStudent(Student student){
         students.get(student.getRollNo()).setName(student.getName());
         System.out.println("Student: Roll No " + student.getRollNo() + ", updated in the database");
     }
