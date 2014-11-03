@@ -1,6 +1,6 @@
 /* This pattern creates a facade in order to hide the logic of object creation.
  * In this example Rectangle,Circle, and Square are created in the ShapeMaker
- * class. From there you can simply call the differnt methods to draw the differnt
+ * class. From there you can simply call the differnt methods to draw the differn
  * shapes.  */
 
 //----------------------------------------------------
@@ -50,7 +50,7 @@ class Circle implements Shape{
 }
 
 //----------------------------------------------------
-//
+// Facade for the draw method of the shapes
 //----------------------------------------------------
 class ShapeMaker{
     private Shape circle;
