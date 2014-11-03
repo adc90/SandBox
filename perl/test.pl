@@ -40,12 +40,18 @@ sub new
 	{
 		print "Hi\n";
 	}
+
+        sub newFunctionTwo
+        {
+            print "Hi this is function two \n";
+        }
 }
 
 $object = new Person("Mohammad","Saleem",23234345);
 $object->newFunc();
 $obj2 = new Person("Aaron","Gilbert",2334235);
 $obj2->newFunc();
+$obj2->newFunctionTwo();
 
 
 

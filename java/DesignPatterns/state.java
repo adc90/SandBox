@@ -40,6 +40,9 @@ class StartState implements State{
     }
 }
 
+//----------------------------------------------------
+// 
+//----------------------------------------------------
 class StopState implements State{
     public void doAction(Context context){
         System.out.println("Player is in a stop state");

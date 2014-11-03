@@ -3,7 +3,7 @@
 
 using namespace std;
 
-struct Hi 
+struct Hi
 {
     int A = 1;
     char b = 'a';
@@ -45,16 +45,22 @@ int main()
 class hello {
     public:
         hello();
+        void goodbye();
 };
+
 hello::hello() {
     printf("%d\n",5);
 }
 
+void hello::goodbye(){
+    printf("%d\n",8);
+}
+
 class bob {
-    
     public:
         bob();
 };
+
 bob::bob() {
     std::cout << "HI" << std::endl;
 }

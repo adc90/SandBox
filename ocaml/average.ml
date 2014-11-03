@@ -3,6 +3,7 @@ let average a b =
         sum /. 2.0
 ;;
 
-
 average 32.4 234.45
+
+
 
