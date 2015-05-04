@@ -15,7 +15,7 @@
         <form>
             <fieldset>
                 <legend>Input Rows</legend>
-                <div> 
+                <div>
                     <div class="RowItem">
                         <input type="checkbox" />
                         <input type="text" id="StudentFirstNm" value="First Name" />
@@ -49,9 +49,7 @@
                     </div>
                     <div class="RowItem">
                         <input type="checkbox" />
-                        <textarea id="TextArea" row="4" cols="50">
-                            This is a text area
-                        </textarea>
+                        <textarea id="TextArea" row="4" cols="50">This is a text area</textarea>
                     </div>
                 </div>
                 <br />
@@ -61,12 +59,12 @@
     </body>
 </html>
 <script>
-    
-    var inputList = []; 
-    
+
+    var inputList = [];
+
     $('#ShowModal').on('click', function()
     {
-        var rows = []; 
+        var rows = [];
         var RowItems = $('.RowItem');
         for(var i = 0; i < RowItems.length; i++)
         {
@@ -74,7 +72,7 @@
             var rowJson = {};
             var name, value;
             var inputs = $(row).find('input, select, textarea');
-            
+
             for(var j = 0; j < inputs.length; j++)
             {
                 var input = inputs[j];
@@ -88,16 +86,46 @@
                     name = "Checkbox";
                     value = $(input).prop("checked");
                 }
-                else 
+                else
                 {
-                    name = "PlaceHolder" + j; 
+                    name = "PlaceHolder" + j;
                     value = "";
                 }
                 rowJson[name] = value;
             }
             rows.push(rowJson);
         }
-        console.log(rows);
+        // console.log(rows);
+        var JsonObject = {};
+
+        for(var k = 0; k < rows.length; k++)
+        {
+            var writeFlag = true;
+            for(var key in rows[k])
+            {
+                if(key === "Checkbox" && rows[k][key] === false){
+                    writeFlag = false; 
+                    continue;
+                }else if(key === "Checkbox" && rows[k][key] === true){
+                    writeFlag = true; 
+                    continue;
+                }
+
+                if(writeFlag){
+                    JsonObject[key] = rows[k][key];
+               }else if(!writeFlag){
+                    JsonObject[key] = '';
+                }
+
+
+
+                console.log("------------------");
+                console.log(key);
+                console.log(rows[k][key]);
+            }
+        }
+        console.log(JsonObject);
+        // console.log(JsonObject);
     });
 </script>
 
@@ -107,3 +135,11 @@ public string SchoolYear {get; set;}
 public string DistrictCd {get; set;}
 public string SchoolCd {get; set;}
 -->
+
+<!--  
+// console.log(key);
+// console.log(rows[k][key]);
+// JsonObject[key] = rows[k][key];
+// console.log(rows[k][key]); //Gets values
+-->
+
