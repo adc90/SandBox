@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <title>Bulk Editing Modal</title>
+    </head>
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <style>
+        div .RowItem {
+            margin-bottom: 5px;
+        }
+    </style>
+    <body>
+        <p>
+            Hello world this is the modal.
+        </p>
+        <form>
+            <fieldset>
+                <legend>Input Rows</legend>
+                <div> 
+                    <div class="RowItem">
+                        <input type="checkbox" />
+                        <input type="text" id="StudentFirstNm" value="First Name" />
+                    </div>
+                    <div class="RowItem">
+                        <input type="checkbox" />
+                        <select id="SchoolYear">
+                            <option>School Year 2001</option>
+                            <option>School Year 2002</option>
+                            <option>School Year 2003</option>
+                            <option>School Year 2004</option>
+                            <option>School Year 2005</option>
+                        </select>
+                    </div>
+                    <div class="RowItem">
+                        <input type="checkbox" />
+                        <select id="DistrictCd">
+                            <option>District 1</option>
+                            <option>District 2</option>
+                            <option>District 3</option>
+                            <option>District 4</option>
+                            <option>District 5</option>
+                        </select>
+                        <select id="SchoolCd">
+                            <option>School 1</option>
+                            <option>School 2</option>
+                            <option>School 3</option>
+                            <option>School 4</option>
+                            <option>School 5</option>
+                        </select>
+                    </div>
+                </div>
+                <br />
+                <button type="button" id="ShowModal">Show Modal</button>
+            </fieldset>
+        </form>
+    </body>
+</html>
+<script>
+
+    var inputList = []; 
+
+    $('#ShowModal').on('click', function()
+    {
+
+        var rows = []; 
+        var RowItems = $('.RowItem');
+        for(var i = 0; i < RowItems.length; i++)
+        {
+            var row = RowItems[i];
+            var rowJson = {};
+            var inputs = $(row).find('input, select');
+
+            for(var j = 0; j < inputs.length; j++)
+            {
+                var input = inputs[j];
+                if($(input).attr('id'))
+                {
+                    name = $(input).attr('id');
+                }
+                else if (input.type == "checkbox")
+                {
+                    name = "checkbox";
+                }
+                else 
+                {
+                    name = "placeholder" + j; 
+                }
+                rowJson[name] = $(input).val();
+            }
+            rows.push(rowJson);
+        }
+        console.log(rows);
+    });
+</script>
+
+<!--
+public string FirstName {get; set;}
+public string SchoolYear {get; set;}
+public string DistrictCd {get; set;}
+public string SchoolCd {get; set;}
+-->

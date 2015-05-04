@@ -1,8 +1,10 @@
 //----------------------------------------------------
 // Main class
 //----------------------------------------------------
-public class abstractfactory{
-    public static void main(String[] args) {
+public class abstractfactory
+{
+    public static void main(String[] args) 
+    {
         AbstractFactory shapeFactory = FactoryProducer.getFactory("SHAPE");
 
         Shape shape1 = shapeFactory.getShape("CIRCLE");
@@ -24,6 +26,9 @@ public class abstractfactory{
 
         Color color3 = colorFactory.getColor("BLUE");
         color3.fill();
+
+        Color color4 = colorFactory("GREEN");
+        color4.fill();
     }
 
 }
@@ -31,23 +36,27 @@ public class abstractfactory{
 //----------------------------------------------------
 // Interface for Shape
 //----------------------------------------------------
-interface Shape{
+interface Shape
+{
     void draw();
 }
 
 //----------------------------------------------------
 // Interface for Color
 //----------------------------------------------------
-interface Color{
+interface Color
+{
     void fill();
 }
 
 //----------------------------------------------------
 // Concrete implmentation of Shape
 //----------------------------------------------------
-class Rectangle implements Shape{
+class Rectangle implements Shape
+{
     @Override
-    public void draw(){
+    public void draw()
+    {
         System.out.println("Inside Rectangle::draw() method.");
     }
 }
@@ -55,9 +64,11 @@ class Rectangle implements Shape{
 //----------------------------------------------------
 // Concrete implmentation of Shape
 //----------------------------------------------------
-class Square implements Shape{
+class Square implements Shape
+{
     @Override
-    public void draw(){
+    public void draw()
+    {
         System.out.println("Inside Square::draw() method.");
     }
 }
@@ -65,9 +76,11 @@ class Square implements Shape{
 //----------------------------------------------------
 // Concrete implmentation of Shape
 //----------------------------------------------------
-class Circle implements Shape{
+class Circle implements Shape
+{
     @Override
-    public void draw(){
+    public void draw()
+    {
         System.out.println("Inside Circle::draw() method.");
     }
 }
@@ -75,9 +88,11 @@ class Circle implements Shape{
 //----------------------------------------------------
 // Concrete implmentation of Color
 //----------------------------------------------------
-class Red implements Color{
+class Red implements Color
+{
     @Override 
-    public void fill(){
+    public void fill()
+    {
         System.out.println("Inside Red::fill() method.");
     }
 }
@@ -85,9 +100,11 @@ class Red implements Color{
 //----------------------------------------------------
 // Concrete implmentation of Color
 //----------------------------------------------------
-class Green implements Color{
+class Green implements Color
+{
     @Override 
-    public void fill(){
+    public void fill()
+    {
         System.out.println("Inside Green::fill() method.");
     }
 }
@@ -95,9 +112,11 @@ class Green implements Color{
 //----------------------------------------------------
 // Concrete implmentation of Color
 //----------------------------------------------------
-class Blue implements Color{
+class Blue implements Color
+{
     @Override 
-    public void fill(){
+    public void fill()
+    {
         System.out.println("Inside Blue::fill() method.");
     }
 }
@@ -106,7 +125,8 @@ class Blue implements Color{
 // Abstract class setting the blue print for creating 
 // further factories
 //----------------------------------------------------
-abstract class AbstractFactory{
+abstract class AbstractFactory
+{
     abstract Color getColor(String color);
     abstract Shape getShape(String shape);
 }
@@ -114,25 +134,34 @@ abstract class AbstractFactory{
 //----------------------------------------------------
 // Implementation of the AbstractFactory
 //----------------------------------------------------
-class ShapeFactory extends AbstractFactory{
+class ShapeFactory extends AbstractFactory
+{
     
     @Override 
-    Shape getShape(String shapeType){
-        if(shapeType == null){
+    Shape getShape(String shapeType)
+    {
+        if(shapeType == null)
+        {
             return null;
         }
-        if(shapeType.equalsIgnoreCase("CIRCLE")){
+        if(shapeType.equalsIgnoreCase("CIRCLE"))
+        {
             return new Circle();
-        }else if(shapeType.equalsIgnoreCase("RECTANGLE")){
+        }
+        else if(shapeType.equalsIgnoreCase("RECTANGLE"))
+        {
             return new Rectangle();
-        }else if(shapeType.equalsIgnoreCase("SQUARE")){
+        }
+        else if(shapeType.equalsIgnoreCase("SQUARE"))
+        {
             return new Square();
         }
         return null;
     }
 
     @Override
-    Color getColor(String color){
+    Color getColor(String color)
+    {
         return null;
     }
 }
@@ -140,23 +169,32 @@ class ShapeFactory extends AbstractFactory{
 //----------------------------------------------------
 // Implementation of the Abstract Factory
 //----------------------------------------------------
-class ColorFactory extends AbstractFactory{
+class ColorFactory extends AbstractFactory
+{
     
     @Override 
-    Shape getShape(String shapeType){
+    Shape getShape(String shapeType)
+    {
         return null;
     }
 
     @Override
-    Color getColor(String color){
-        if(color == null){
+    Color getColor(String color)
+    {
+        if(color == null)
+        {
             return null;
         }
-        if(color.equalsIgnoreCase("RED")){
+        if(color.equalsIgnoreCase("RED"))
+        {
             return new Red();
-        }else if(color.equalsIgnoreCase("GREEN")){
+        }
+        else if(color.equalsIgnoreCase("GREEN"))
+        {
             return new Green();
-        }else if(color.equalsIgnoreCase("BLUE")){
+        }
+        else if(color.equalsIgnoreCase("BLUE"))
+        {
             return new Blue();
         }
         return null;
@@ -167,10 +205,14 @@ class ColorFactory extends AbstractFactory{
 // A factory method for producing factories
 //----------------------------------------------------
 class FactoryProducer{
-    public static AbstractFactory getFactory(String choice){
-        if(choice.equalsIgnoreCase("SHAPE")){
+    public static AbstractFactory getFactory(String choice)'
+    {
+        if(choice.equalsIgnoreCase("SHAPE"))
+        {
             return new ShapeFactory();
-        }else if(choice.equalsIgnoreCase("COLOR")){
+        }
+        else if(choice.equalsIgnoreCase("COLOR"))
+        {
             return new ColorFactory();
         }
         return null;

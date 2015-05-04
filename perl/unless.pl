@@ -34,4 +34,9 @@ until($d > 10)
     $d = $d + 1;
 }
 
+until($d > 10)
+{
+    printf "Value of a :$\n";
+}
+
 

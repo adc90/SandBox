@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <standard.h>
 
 int main(void)
 {
@@ -21,6 +22,7 @@ int main(void)
 
     printf("%d\n", *cpci);
     pcpci = &cpci;
+    printf("%d\n", **pcpci);
     printf("%d\n", **pcpci);
 
 

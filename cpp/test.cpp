@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdio.h>
 
+
 using namespace std;
 
 struct Hi
@@ -64,4 +65,13 @@ class bob {
 bob::bob() {
     std::cout << "HI" << std::endl;
 }
+
+bob::greg(){
+    std::cout << "Hello" << std::endl;
+}
+
+
+
+
+
 

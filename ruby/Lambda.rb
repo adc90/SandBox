@@ -33,6 +33,11 @@ def do_twice
     yield "Welcome to the house"
 end
 
+def HelloTwice
+    puts "Hi"
+    puts "Hello"
+end
+
 dr = -> () {puts "Hola"}
 do_twice {dr}
 dr.call()
@@ -53,3 +58,6 @@ my_array.each {|item|
 my_array.each do |item|
     puts item
 end
+
+
+
