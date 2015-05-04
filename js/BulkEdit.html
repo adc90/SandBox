@@ -47,10 +47,15 @@
                             <option>School 5</option>
                         </select>
                     </div>
+                    <div class="RowItem">
+                        <input type="checkbox" />
+                        <textarea id="TextArea" row="4" cols="50">
+                            This is a text area
+                        </textarea>
+                    </div>
                 </div>
                 <br />
                 <button type="button" id="ShowModal">Show Modal</button>
-                <input id="test" type="checkbox" />
             </fieldset>
         </form>
     </body>
@@ -68,7 +73,7 @@
             var row = RowItems[i];
             var rowJson = {};
             var name, value;
-            var inputs = $(row).find('input, select');
+            var inputs = $(row).find('input, select, textarea');
             
             for(var j = 0; j < inputs.length; j++)
             {
@@ -85,7 +90,7 @@
                 }
                 else 
                 {
-                    name = "placeholder" + j; 
+                    name = "PlaceHolder" + j; 
                     value = "";
                 }
                 rowJson[name] = value;
