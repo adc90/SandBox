@@ -50,41 +50,45 @@
                 </div>
                 <br />
                 <button type="button" id="ShowModal">Show Modal</button>
+                <input id="test" type="checkbox" />
             </fieldset>
         </form>
     </body>
 </html>
 <script>
-
+    
     var inputList = []; 
-
+    
     $('#ShowModal').on('click', function()
     {
-
         var rows = []; 
         var RowItems = $('.RowItem');
         for(var i = 0; i < RowItems.length; i++)
         {
             var row = RowItems[i];
             var rowJson = {};
+            var name, value;
             var inputs = $(row).find('input, select');
-
+            
             for(var j = 0; j < inputs.length; j++)
             {
                 var input = inputs[j];
                 if($(input).attr('id'))
                 {
                     name = $(input).attr('id');
+                    value = $(input).val();
                 }
                 else if (input.type == "checkbox")
                 {
-                    name = "checkbox";
+                    name = "Checkbox";
+                    value = $(input).prop("checked");
                 }
                 else 
                 {
                     name = "placeholder" + j; 
+                    value = "";
                 }
-                rowJson[name] = $(input).val();
+                rowJson[name] = value;
             }
             rows.push(rowJson);
         }
