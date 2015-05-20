@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <title>Bootstrap Demo</title>
+      <link rel="stylesheet" type="text/css" href="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.css"></link>
+      <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+      <script src="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.js"></script>
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+  </head>
+  <body>
+    <table id="#table"></table>
+    <table id = "table" data-toggle="table"
+       data-url="https://api.github.com/users/wenzhixin/repos"
+       data-query-params="queryParams"
+       data-pagination="true"
+       data-search="true"
+       data-height="300"
+       data-maintain-selected = "true">
+      <thead>
+	<tr>
+          <th data-field="state" data-checkbox="true"></th>
+          <th data-field="name">Name</th>
+          <th data-field="stargazers_count">Stars</th>
+          <th data-field="forks_count">Forks</th>
+          <th data-field="description">Description</th>
+	</tr>
+      </thead>
+    </table>
+    <button id="getSelections">Get Selections</button>
+  </body>
+</html>
+<script> 
+    function queryParams() {
+        return {
+            type: 'owner',
+        sort: 'updated',
+        direction: 'desc',
+        per_page: 100,
+        page: 1
+        };
+    }
+
+    $('#getSelections').on('click', function(){
+        var numberOfSelections = $('table').bootstrapTable('getAllSelections').length; 
+        alert(numberOfSelections);
+    });
+    $(document).ready(function(){
+        var lastChecked = null;
+            $(document).on('change keydown', '.bs-checkbox input[name=btSelectItem]', function (e) {
+                var $chkboxes = $('#table :checkbox').not('input[name=btSelectAll]');
+                if (!lastChecked) {
+                    lastChecked = this;
+                    return;
+                }
+                if (e.shiftKey) {
+                    var start = $chkboxes.index(this);
+                    var end = $chkboxes.index(lastChecked);
+                    for (var i = Math.min(start, end); i < Math.max(start, end) + 1; i++) {
+                        $('#table').bootstrapTable('check', i); 
+                    }
+                }
+                console.log("Max: " + Math.max(start, end));
+                console.log("Min: " + Math.min(start, end));
+                lastChecked = this;
+            });    
+    });
+</script>
