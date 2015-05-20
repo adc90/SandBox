@@ -36,9 +36,6 @@ test{puts "Block on line 35"}
 
 test
 
-
-
-
 def funct(var)
 	yield(var)
 end

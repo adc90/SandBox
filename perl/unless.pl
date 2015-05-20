@@ -34,4 +34,8 @@ until($d > 10)
     $d = $d + 1;
 }
 
-
+foreach $names(@names)
+{
+    print "$count $names \n";
+    #count++;
+}

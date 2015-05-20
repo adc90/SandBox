@@ -1,4 +1,3 @@
 from subprocess import call
 
-#call(["ls","-l"])
-call("yes","hello")
+call(["ls","-l"])
