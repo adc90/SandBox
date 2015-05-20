@@ -34,8 +34,17 @@ until($d > 10)
     $d = $d + 1;
 }
 
+<<<<<<< HEAD
 foreach $names(@names)
 {
     print "$count $names \n";
     #count++;
 }
+=======
+until($d > 10)
+{
+    printf "Value of a :$\n";
+}
+
+
+>>>>>>> cecbab8d9684417cf034bed33c2a22365732b6b4

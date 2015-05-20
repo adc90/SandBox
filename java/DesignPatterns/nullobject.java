@@ -7,14 +7,16 @@
 //----------------------------------------------------
 // Main class
 //----------------------------------------------------
-public class nullobject{
-    public static void main(String[] args) {
-
+public class nullobject
+{
+    public static void main(String[] args) 
+    {
+        
         AbstractCustomer customer1 = CustomerFactory.getCustomer("Rob");   
         AbstractCustomer customer2 = CustomerFactory.getCustomer("Bob");   
         AbstractCustomer customer3 = CustomerFactory.getCustomer("Julie");   
         AbstractCustomer customer4 = CustomerFactory.getCustomer("Laura");   
-
+        
         System.out.println("Customers");
         System.out.println(customer1.getName());
         System.out.println(customer2.getName());
@@ -28,7 +30,8 @@ public class nullobject{
 // get the name of the customer. As well as a method 
 // for checking if the customer is non-existent.
 //----------------------------------------------------
-abstract class AbstractCustomer{
+abstract class AbstractCustomer
+{
     protected String name;
     public abstract boolean isNil();
     public abstract String getName();
@@ -37,17 +40,21 @@ abstract class AbstractCustomer{
 //----------------------------------------------------
 // Represents an instance of real customer.
 //----------------------------------------------------
-class RealCustomer extends AbstractCustomer{
+class RealCustomer extends AbstractCustomer
+{
     
-    public RealCustomer(String name){
+    public RealCustomer(String name)
+    {
         this.name = name;
     }
-
-    @Override public String getName(){
+    
+    @Override public String getName()
+    {
         return name;
     }
-
-    @Override public boolean isNil(){
+    
+    @Override public boolean isNil()
+    {
         return false;
     }
 }
@@ -55,13 +62,15 @@ class RealCustomer extends AbstractCustomer{
 //----------------------------------------------------
 // Represents behavior for an instance of null customer.
 //----------------------------------------------------
-class NullCustomer extends AbstractCustomer{
-
-    @Override public String getName(){
+class NullCustomer extends AbstractCustomer
+{
+    @Override public String getName()
+    {
         return "Not Availiable in Customer Database";
     }
-
-    @Override public boolean isNil(){
+    
+    @Override public boolean isNil()
+    {
         return true;
     }
 }
@@ -71,12 +80,16 @@ class NullCustomer extends AbstractCustomer{
 // and if name exisit then an instance of real customer
 // is returned else a NullCustomer is returned.
 //----------------------------------------------------
-class CustomerFactory{
+class CustomerFactory
+{
     public static final String[] names = {"Rob" ,"Joe", "Julie"};
-
-    public static AbstractCustomer getCustomer(String name){
-        for (int i = 0; i < names.length; i++) {
-            if(names[i].equalsIgnoreCase(name)){
+    
+    public static AbstractCustomer getCustomer(String name)
+    {
+        for (int i = 0; i < names.length; i++) 
+        {
+            if(names[i].equalsIgnoreCase(name))
+            {
                 return new RealCustomer(name);
             }
         }

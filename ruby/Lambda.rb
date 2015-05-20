@@ -33,6 +33,18 @@ def do_twice
     yield "Welcome to the house"
 end
 
+<<<<<<< HEAD
+=======
+def HelloTwice
+    puts "Hi"
+    puts "Hello"
+end
+
+dr = -> () {puts "Hola"}
+do_twice {dr}
+dr.call()
+
+>>>>>>> cecbab8d9684417cf034bed33c2a22365732b6b4
 do_twice {|i| puts "Hello world #{i}"}
 
 def test(&block)
@@ -50,5 +62,9 @@ my_array.each do |item|
     puts item
 end
 
+<<<<<<< HEAD
 print "Erick".send(:upcase)
+=======
+
+>>>>>>> cecbab8d9684417cf034bed33c2a22365732b6b4
 
