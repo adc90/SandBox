@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Table</title>
+<script>
+'use strict';
+var promiseCount = 0;
+
+function testPromise() {
+    var thisPromiseCount = ++promiseCount;
+
+    var p1 = new Promise(function(resolve, reject) 
+    {
+        window.setTimeout(function() 
+        { 
+            resolve(thisPromiseCount);
+        }, Math.random() * 2000 + 1000); 
+    });
+    p1.then(function(val) { 
+        console.log('beforeend', val + ') Promise fulfilled (Async code terminated)');
+    }).catch(function() {
+        console.log('promise was rejected');
+    });
+}
+for(var i = 0; i < 100; i++){
+    testPromise();
+}
+</script> 
+    </head>
+    <body>
+        <table id="table">
+        </table>
+        <button onclick="testPromise()" type='button'>Hello</button>
+        <br/>
+        <span id='log'></span>
+    </body>
+</html>

@@ -1,6 +1,6 @@
 import Tkinter
 
-top = Tkinter.Tk()
+top = Tkinter.Tk("HELLO")
 
 top.mainloop()
 

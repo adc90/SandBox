@@ -1,0 +1,4 @@
+import Tkintertop = Tkinter.Tk("HELLO")
+
+top.mainloop()
+

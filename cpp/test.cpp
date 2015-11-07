@@ -1,77 +1,81 @@
 #include <iostream>
 #include <stdio.h>
 
-
 using namespace std;
 
 struct Hi
 {
-    int A = 1;
-    char b = 'a';
+    int A;
+    char b;
 };
 
-int main()
+int main() 
 {
     cout << "Hello World!" << endl;
     Hi test;
-    cout << test.A << endl;
-    cout << test.b << endl;
+    test.A = 1;
     int e = 1;
     int *a = &e;
     cout << a << endl;
 
-    for(int i = 0; i < 12; i++){
+    for(int i = 0; i < 12; i++)
+    {
         cout << "Hi" << endl;
     }
 
 
     int j = 0;
-    while(j != 5){
+    while(j != 5)
+    {
         cout << j << endl;
         j++;
     }
 
-    for(int k = 0; k <= 35; k++){
+    for(int k = 0; k <= 35; k++)
+    {
         cout << k << endl;
     }
 
     int l;
-    for (l = 0; l < j; l++) {
+    for (l = 0; l < j; l++) 
+    {
         printf("%d\n", l);
     }
 
     return 0;
 }
 
-class hello {
+class hello 
+{
     public:
         hello();
         void goodbye();
 };
 
-hello::hello() {
+hello::hello() 
+{
     printf("%d\n",5);
 }
 
-void hello::goodbye(){
+void hello::goodbye()
+{
     printf("%d\n",8);
 }
 
-class bob {
+class bob 
+{
     public:
         bob();
+        void greg();
 };
 
-bob::bob() {
+bob::bob() 
+{
     std::cout << "HI" << std::endl;
 }
 
-bob::greg(){
-    std::cout << "Hello" << std::endl;
+void bob::greg()
+{
+  std::cout << "Greg" << std::endl;
 }
-
-
-
-
-
 

@@ -1,0 +1,6 @@
+function Hello()
+{
+    Cmd-Applet "Hello World"
+}
+
+1

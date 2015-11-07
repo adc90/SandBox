@@ -1,0 +1,37 @@
+<html>
+<title>Form controll repo</title>
+<script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+<script>
+$(document).ready(function() {
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+
+    function drawCircle(x,y,w,h){
+        ctx.beginPath();
+        ctx.arc(x,y,10,0,2*Math.PI);
+        ctx.stroke();
+    }
+
+    var x = 85;
+    var y = 55;
+    var myVar; 
+    var i = 0;
+    while(i < 100) {
+        myVar = setTimeout(function(){
+            drawCircle(x,y);
+        
+        }, 1000);
+        x += 1;
+        y += 1;
+        i++;
+    }
+
+
+
+});
+</script>
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;">
+    </canvas>
+</body>
+</html>

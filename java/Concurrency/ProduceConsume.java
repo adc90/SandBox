@@ -2,26 +2,26 @@ public class ProduceConsume
 {
     public static void main(String[] args)
     {
-        System.out.println("Hello");
+        Thread t = new Thread();
     }
 }
 
-@NotThreadSafe
-class UnsafeSequence
+@NotThreadSafe class UnsafeSequence
 {
     private int value;
     
-    public int getNext(){
+    public int getNext()
+    {
         return value++; 
     }    
 }
 
-@ThreadSafe
-class Sequence
+@ThreadSafe class Sequence
 {
     @GuardedBy("this") private int nextValue;
 
-    public synchronized int getNext(){
+    public synchronized int getNext()
+    {
         return nextValue++;
     }
 }

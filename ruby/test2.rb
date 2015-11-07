@@ -10,7 +10,7 @@ end
 
 three_times {|f| puts f}
 
-f = File.open("Makefile")
+f = File.open("test.rb")
 f.each do |line|
     puts line
 end

@@ -6,19 +6,25 @@
         </title>
     </head>
     <body>
-        <div data-ng-app="" data-ng-controller="personController">
+        <div data-ng-app="" data-ng-controller="personController" data-ng-init="names=['Jani','Hege','Kai']">
             First Name: <input type="text" data-ng-model="firstName"><br>
             Last Name: <input type="text" data-ng-model="lastName"><br>
             <br>
             Full Name: {{firstName + " " + lastName}}
+            <p>1 + 2 = {{ 1 + 2}} </p>
+            <ul>
+                <li data-ng-repeat="x in names">
+                    {{ x }}
+                </li>
+            </ul>
         </div>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
         <script>
-            function personController($scope)
-            {
+            var app = angular.module('myApp', []);
+            app.controller('myCtrl', function($scope){
                 $scope.firstName = "John";
-                $scope.lastName  = "Doe"; 
-            }
+                $scope.lastName = "Doe";
+            });
         </script>
     </body>
 </html>

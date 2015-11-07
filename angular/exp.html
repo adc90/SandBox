@@ -1,0 +1,79 @@
+<html>
+<head>
+    <title>Angular Applicaton</title>
+
+    <!-- JavaScript -->
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/jquery-2.1.4.min.js"></script>
+    <script src="./js/angular.min.js"></script>
+    <script src="./js/angular-route.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/bootstrap-responsive.min.css">
+
+    <script>
+    var app = angular.module('expApplication', []);
+    app.controller('expController', function($scope) {
+        $scope.firstName= "";
+        $scope.rows = 
+            [
+            {"Description":"Test1","Code":100111, "FuncCode": 101, "ObjCode": 111, "Indirect": false, "Direct": true, "Active": true },
+            {"Description":"Test2","Code":120111, "FuncCode": 190, "ObjCode": 181, "Indirect": true, "Direct": true, "Active": true },
+            {"Description":"Test3","Code":130111, "FuncCode": 170, "ObjCode": 111, "Indirect": false, "Direct": false, "Active": true },
+            {"Description":"Test4","Code":110111, "FuncCode": 140, "ObjCode": 119, "Indirect": false, "Direct": true, "Active": true },
+            {"Description":"Test5","Code":130111, "FuncCode": 105, "ObjCode": 211, "Indirect": true, "Direct": true, "Active": false },
+            {"Description":"Test6","Code":130111, "FuncCode": 104, "ObjCode": 131, "Indirect": false, "Direct": true, "Active": true },
+            ];
+    });
+    </script>
+</head>
+<body>
+    <h2>Expenditures Edit Table</h2>
+    <hr />
+    <div ng-app="expApplication" ng-controller="expController">
+        <form class="form">
+            <input class="control" ng-model="firstName" />
+            <p ng-bind="firstName"></p>
+            <button id="test" class="btn btn-default" type="button">Test</button>
+        </form>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <th>Description</th>
+                    <th>Exp Code</th>
+                    <th>Func Code</th>
+                    <th>Obj Code</th>
+                    <th>Indirect</th>
+                    <th>Direct</th>
+                    <th>Active</th>
+                    <th>Edit</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in rows">
+                        <td>{{ row.Description }}</td>
+                        <td>{{ row.Code }}</td>
+                        <td>{{ row.FuncCode }}</td>
+                        <td>{{ row.ObjCode }}</td>
+                        <td>{{ row.Indirect }}</td>
+                        <td>{{ row.Direct }}</td>
+                        <td>{{ row.Active }}</td>
+                        <td>Edit</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="pagination">
+            <ul>
+                <li><a href="#">Prev</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">Next</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

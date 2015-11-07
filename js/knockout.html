@@ -1,0 +1,27 @@
+<html>
+<head>
+    <title>Knockout play box</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+    <ul>
+        <!-- ko foreach: books -->
+            <li data-bind="text: $data"></li>
+        <!--/ko -->
+        <a>www.google.com</a>
+        knockout js
+    </ul>
+    <script>
+        var viewModel = function() {
+            var self = this;
+            self.books = [
+                'Rapid Application Development with CakePHP',
+                'Web development is good',
+                'I like Ike',
+            ];
+        };
+        ko.applyBindings(viewModel);
+    </script>
+</body>
+</html>
