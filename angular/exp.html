@@ -9,71 +9,162 @@
     <script src="./js/angular-route.min.js"></script>
 
     <!-- CSS -->
+    <link rel="stylesheet" href="./css/panels.css">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <style>
+        .body {
+            width: 75%;
+            margin: auto;
+        }
+    </style>
 
     <script>
-    var app = angular.module('expApplication', []);
-    app.controller('expController', function($scope) {
-        $scope.firstName= "";
-        $scope.rows = 
-            [
-            {"Description":"Test1","Code":100111, "FuncCode": 101, "ObjCode": 111, "Indirect": false, "Direct": true, "Active": true },
-            {"Description":"Test2","Code":120111, "FuncCode": 190, "ObjCode": 181, "Indirect": true, "Direct": true, "Active": true },
-            {"Description":"Test3","Code":130111, "FuncCode": 170, "ObjCode": 111, "Indirect": false, "Direct": false, "Active": true },
-            {"Description":"Test4","Code":110111, "FuncCode": 140, "ObjCode": 119, "Indirect": false, "Direct": true, "Active": true },
-            {"Description":"Test5","Code":130111, "FuncCode": 105, "ObjCode": 211, "Indirect": true, "Direct": true, "Active": false },
-            {"Description":"Test6","Code":130111, "FuncCode": 104, "ObjCode": 131, "Indirect": false, "Direct": true, "Active": true },
-            ];
-    });
+var app = angular.module('expApplication', []);
+app.controller('expController', function($scope) {
+    $scope.rows = 
+        [
+            {"Ed":false,"Description":"Test1","Code":100111, "FuncCode": 101, "ObjCode": 111, "Indirect": false, "Direct": true, "Active": true },
+            {"Ed":false,"Description":"Test2","Code":120111, "FuncCode": 190, "ObjCode": 181, "Indirect": true, "Direct": true, "Active": true },
+            {"Ed":false,"Description":"Test3","Code":130111, "FuncCode": 170, "ObjCode": 111, "Indirect": false, "Direct": false, "Active": true },
+            {"Ed":false,"Description":"Test4","Code":110111, "FuncCode": 140, "ObjCode": 119, "Indirect": false, "Direct": true, "Active": true },
+            {"Ed":false,"Description":"Test5","Code":130111, "FuncCode": 105, "ObjCode": 211, "Indirect": true, "Direct": true, "Active": false },
+            {"Ed":false,"Description":"Test6","Code":130111, "FuncCode": 104, "ObjCode": 131, "Indirect": false, "Direct": true, "Active": true },
+            {"Ed":false,"Description":"Test1","Code":100111, "FuncCode": 101, "ObjCode": 111, "Indirect": false, "Direct": true, "Active": true },
+            {"Ed":false,"Description":"Test2","Code":120111, "FuncCode": 190, "ObjCode": 181, "Indirect": true, "Direct": true, "Active": true },
+            {"Ed":false,"Description":"Test4","Code":110111, "FuncCode": 140, "ObjCode": 119, "Indirect": false, "Direct": true, "Active": true },
+            {"Ed":false,"Description":"Test5","Code":130111, "FuncCode": 105, "ObjCode": 211, "Indirect": true, "Direct": true, "Active": false },
+            {"Ed":false,"Description":"Test3","Code":130111, "FuncCode": 170, "ObjCode": 111, "Indirect": false, "Direct": false, "Active": true },
+            {"Ed":false,"Description":"Test4","Code":110111, "FuncCode": 140, "ObjCode": 119, "Indirect": false, "Direct": true, "Active": true },
+            {"Ed":false,"Description":"Test5","Code":130111, "FuncCode": 105, "ObjCode": 211, "Indirect": true, "Direct": true, "Active": false },
+            {"Ed":false,"Description":"Test6","Code":130111, "FuncCode": 104, "ObjCode": 131, "Indirect": false, "Direct": true, "Active": true },
+        ];
+    $scope.editLock = false;
+    $scope.row = {};
+
+    $scope.editExp = function(id) {
+        alert(id);
+    };
+
+    $scope.editExpenditureCode = function(row) {
+        $scope.row = row;
+    }
+
+    $scope.testEdit = function(row) {
+        console.log(row);
+    }
+
+    $scope.addNewExpenditure = function() {
+        $editLock = true;
+        console.log($editLock); 
+        if($editLock){
+            alert("You can only edit 1 at a time");
+        }
+        $scope.rows.unshift({"Ad":false,"Ed":true,"Description":"AAAA","Code":130111, "FuncCode": 104, "ObjCode": 131, "Indirect": false, "Direct": true, "Active": true });
+    }
+
+    $scope.cancelExpenditure = function(row) {
+        $editLock = false;
+        row.Ed = false;
+        row = $row
+    }
+});
     </script>
 </head>
 <body>
-    <h2>Expenditures Edit Table</h2>
-    <hr />
-    <div ng-app="expApplication" ng-controller="expController">
-        <form class="form">
-            <input class="control" ng-model="firstName" />
-            <p ng-bind="firstName"></p>
-            <button id="test" class="btn btn-default" type="button">Test</button>
-        </form>
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <th>Description</th>
-                    <th>Exp Code</th>
-                    <th>Func Code</th>
-                    <th>Obj Code</th>
-                    <th>Indirect</th>
-                    <th>Direct</th>
-                    <th>Active</th>
-                    <th>Edit</th>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="row in rows">
-                        <td>{{ row.Description }}</td>
-                        <td>{{ row.Code }}</td>
-                        <td>{{ row.FuncCode }}</td>
-                        <td>{{ row.ObjCode }}</td>
-                        <td>{{ row.Indirect }}</td>
-                        <td>{{ row.Direct }}</td>
-                        <td>{{ row.Active }}</td>
-                        <td>Edit</td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="body">
+        <h2>Expenditures Edit Table</h2>
+        <hr />
+        <div class="panel panel-default">
+            <div class="panel-heading">Search Expenditure Codes</div>
+            <div class="panel-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="usr">Name:</label>
+                        <input type="text" class="form-control" id="usr">
+                    </div>
+                </form>
+            </div>
+            <div class="panel-footer">
+                <button type="button" class="btn btn-primary">Search <i class="fa fa-search"></i></button>
+            </div>
         </div>
-        <div class="pagination">
-            <ul>
-                <li><a href="#">Prev</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">Next</a></li>
-            </ul>
+        <div ng-app="expApplication" ng-controller="expController">
+            <button id="test" class="btn btn-default" ng-click="addNewExpenditure()" type="button">
+                Add Expenditure <i class="fa fa-plus-square-o"></i>
+            </button>
+            <br />
+            <br />
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <th>Description</th>
+                        <th>Exp Code</th>
+                        <th>Func Code</th>
+                        <th>Obj Code</th>
+                        <th>Indirect</th>
+                        <th>Direct</th>
+                        <th>Active</th>
+                        <th>Edit</th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in rows">
+                            <td>{{ row.Description }}</td>
+                            <td>{{ row.Code }}</td>
+                            <td>
+                                <span ng-show="row.Ad">{{ row.FuncCode }}</span>
+                                <select ng-hide="row.Ad">
+                                    <option>A</option>
+                                    <option>B</option>
+                                    <option>C</option>
+                                    <option>C</option>
+                                </select>
+                            </td>
+                            <td>{{ row.ObjCode }}</td>
+                            <td>
+                                <input type="checkbox" ng-model="Indirect" ng-show="row.Ed" />
+                                <span ng-hide="row.Ed">{{ row.Indirect }}</span>
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="row.Direct" ng-show="row.Ed" />
+                                <span ng-hide="row.Ed">{{ row.Direct }}</span>
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="row.Active" ng-show="row.Ed" />
+                                <span ng-hide="row.Ed">{{ row.Active }}</span>
+                            </td>
+                            <td>
+                                <button ng-hide="row.Ed" ng-click="row.Ed=true" type="button" class="btn btn-default">
+                                    Edit <i class="fa fa-pencil"></i>
+                                </button>
+                                <button class="btn btn-default" ng-show="row.Ed" ng-click="editExpenditureCode(row.Code)">
+                                    Save
+                                </button>
+                                <button class="btn btn-default" ng-show="row.Ed" ng-click="cancelExpenditure(row)"> <!-- pass in a refernce to the row -->
+                                    Cancel
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination pull-right">
+                <ul>
+                    <li><a class="fa fa-angle-double-left" href="#"></a></li>
+                    <li><a href="#">Prev</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">Next</a></li>
+                    <li><a class="fa fa-angle-double-right" href="#"></a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </body>
 </html>
+
+
