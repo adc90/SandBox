@@ -43,31 +43,39 @@ app.controller('expController', function($scope) {
     $scope.editLock = false;
     $scope.row = {};
 
-    $scope.editExp = function(id) {
-        alert(id);
-    };
-
     $scope.editExpenditureCode = function(row) {
         $scope.row = row;
     }
 
-    $scope.testEdit = function(row) {
-        console.log(row);
+    $scope.saveNewExpenditure = function(row) {
+
     }
 
     $scope.addNewExpenditure = function() {
         $editLock = true;
         console.log($editLock); 
-        if($editLock){
+        if($editLock){ //To simplify things we only are allowing users to edit/add one entry at a time
             alert("You can only edit 1 at a time");
         }
-        $scope.rows.unshift({"Ad":false,"Ed":true,"Description":"AAAA","Code":130111, "FuncCode": 104, "ObjCode": 131, "Indirect": false, "Direct": true, "Active": true });
+
+        $scope.rows.unshift(
+			{
+			"AddEntry":false,
+			"EditEntry":true,
+			"Description":"AAAA",
+			"Code":130111, 
+			"FuncCode": 104, 
+			"ObjCode": 131, 
+			"Indirect": false, 
+			"Direct": true, 
+			"Active": true 
+			});
     }
 
     $scope.cancelExpenditure = function(row) {
         $editLock = false;
-        row.Ed = false;
-        row = $row
+        row.Ed = false;  //Set the row to be false since we're done editing 
+        row = $row 	 //Set the row back to the original value
     }
 });
     </script>
@@ -79,12 +87,14 @@ app.controller('expController', function($scope) {
         <div class="panel panel-default">
             <div class="panel-heading">Search Expenditure Codes</div>
             <div class="panel-body">
-                <form role="form">
-                    <div class="form-group">
-                        <label for="usr">Name:</label>
-                        <input type="text" class="form-control" id="usr">
-                    </div>
-                </form>
+	    <form>
+	    	<div class="control-group">
+		    <label class="control-label" for="expCode">Email</label>
+		    <div class="controls">
+		    	<input type="text" id="expCode" placeholder="Expenditure Code">
+		    </div>
+	    	</div>
+	    </form>
             </div>
             <div class="panel-footer">
                 <button type="button" class="btn btn-primary">Search <i class="fa fa-search"></i></button>
